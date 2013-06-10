@@ -250,7 +250,7 @@ def get_system(org_name, sys_name, env_name=None, sys_uuid=None):
     system_api = SystemAPI()
     if sys_uuid:
         systems = system_api.systems_by_org(org_name, {'uuid': sys_uuid})
-        if systems is None:
+        if systems is None or len(systems) == 0:
             raise ApiDataError(_("Could not find System [ %(sys_name)s ] in Org [ %(org_name)s ]") \
                 % {'sys_name':sys_name, 'org_name':org_name})
         elif len(systems) != 1:
